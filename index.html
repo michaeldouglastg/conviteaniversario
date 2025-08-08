@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Lato:wght@300;400&family=Great+Vibes&display=swap" rel="stylesheet">
-
     <style>
         body {
             font-family: 'Lato', sans-serif;
@@ -34,6 +33,10 @@
         }
         .item-card {
             text-align: center;
+            transition: transform 0.3s ease-in-out; /* Adicionado para animação no hover */
+        }
+        .item-card:hover {
+            transform: scale(1.03); /* Efeito de zoom no hover */
         }
         .item-card img {
             /* aspect-ratio: 4/3; */
@@ -61,14 +64,24 @@
             background-color: #bfa15f;
             margin: 2rem auto;
         }
+        /* Estilos para a animação de scroll */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
-
 </head>
-
 <body class="text-gray-800">
+
     <div class="container mx-auto p-6 sm:p-12 max-w-4xl">
+
         <!-- Cabeçalho de Aniversário -->
-        <header class="text-center mb-16">
+        <header class="text-center mb-16 animate-on-scroll">
             <h2 class="subtitle text-4xl">De Repente</h2>
             <h1 class="main-title text-9xl sm:text-[10rem]">30</h1>
             <p class="subtitle text-xl -mt-2">Myryã</p>
@@ -81,7 +94,7 @@
         </header>
 
         <!-- Seção de Entrada -->
-        <section id="entrada" class="mb-16">
+        <section id="entrada" class="mb-16 animate-on-scroll">
             <h2 class="section-title text-3xl">Entrada</h2>
             <div class="divider"></div>
             <div class="flex justify-center">
@@ -94,7 +107,7 @@
         </section>
 
         <!-- Seção de Pratos Principais -->
-        <section id="pratos-principais" class="mb-16">
+        <section id="pratos-principais" class="mb-16 animate-on-scroll">
             <h2 class="section-title text-3xl">Pratos Principais</h2>
             <div class="divider"></div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -112,7 +125,7 @@
         </section>
         
         <!-- Seção de Sobremesa -->
-        <section id="sobremesa" class="mb-16">
+        <section id="sobremesa" class="mb-16 animate-on-scroll">
             <h2 class="section-title text-3xl">Sobremesa</h2>
             <div class="divider"></div>
              <div class="flex justify-center">
@@ -125,7 +138,7 @@
         </section>
 
         <!-- Seção de Bebidas -->
-        <section id="bebidas" class="mb-12">
+        <section id="bebidas" class="mb-12 animate-on-scroll">
             <h2 class="section-title text-3xl">Bebidas</h2>
             <div class="divider"></div>
             <div class="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-10">
@@ -161,6 +174,24 @@
                 </div>
             </div>
         </section>
+
     </div>
+
+    <script>
+        // Lógica para ativar a animação ao rolar a página
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, {
+            threshold: 0.1 // A animação começa quando 10% do elemento está visível
+        });
+
+        const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
+        elementsToAnimate.forEach(el => observer.observe(el));
+    </script>
+
 </body>
 </html>
