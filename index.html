@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>De Repente 30 - Aniversário da Myryã</title>
+    <link rel="icon" type="image/png" href="/assets/imagens/favicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Lato:wght@300;400&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         body {
             font-family: 'Lato', sans-serif;
@@ -74,13 +76,123 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* INÍCIO DOS NOVOS ESTILOS PARA O BOTÃO E MODAL */
+        
+        /* Estilos do Botão Flutuante */
+        .float-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #bfa15f; /* Cor dourada do seu site */
+            color: white;
+            border-radius: 50%;
+            width: 65px;
+            height: 65px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border: none;
+            outline: none;
+        }
+        
+        .float-button:hover {
+            background-color: #a68c54; /* Tom um pouco mais escuro no hover */
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Estilos do Modal */
+        .modal {
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        .modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            transform: translateY(-20px);
+            transition: transform 0.3s ease-out;
+        }
+        
+        .modal.show .modal-content {
+            transform: translateY(0);
+        }
+        
+        .close-button {
+            color: #888;
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 36px;
+            font-weight: normal;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        
+        .close-button:hover {
+            color: #333;
+        }
+        
+        .modal-content h3 {
+            color: #bfa15f; /* Cor dourada do seu site */
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            font-family: 'Cormorant Garamond', serif;
+        }
+        
+        #qrcode-container {
+            margin: 25px auto;
+            border: 5px solid #f0f0f0;
+            display: inline-block;
+            padding: 5px;
+            border-radius: 8px;
+        }
+        
+        #qrcode-container canvas {
+            display: block;
+        }
+        
+        .modal-content p {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 0;
+        }
+        
+        /* FIM DOS NOVOS ESTILOS */
     </style>
 </head>
 <body class="text-gray-800">
 
     <div class="container mx-auto p-6 sm:p-12 max-w-4xl">
-
-        <!-- Cabeçalho de Aniversário -->
         <header class="text-center mb-16 animate-on-scroll">
             <h2 class="subtitle text-4xl">De Repente</h2>
             <h1 class="main-title text-9xl sm:text-[10rem]">30</h1>
@@ -93,51 +205,47 @@
             </p>
         </header>
 
-        <!-- Seção de Entrada -->
         <section id="entrada" class="mb-16 animate-on-scroll">
             <h2 class="section-title text-3xl">Entrada</h2>
             <div class="divider"></div>
             <div class="flex justify-center">
                 <div class="item-card w-full md:w-2/3">
                     <img src="/assets/imagens/1.webp" alt="Foto de Batata Frita com queijo e bacon" class="shadow-md">
-                    <h3>Batata Frita Especial 400g</h3>
-                    <p class="item-description">Batatas fritas cobertas com queijo muçarela derretido e bacon crocante.</p>
+                    <h3>Batata Frita Especial</h3>
+                    <p class="item-description">Batatas fritas cobertas com queijo muçarela derretido e bacon crocante.<br>Cód: 1004</p>
                 </div>
             </div>
         </section>
 
-        <!-- Seção de Pratos Principais -->
         <section id="pratos-principais" class="mb-16 animate-on-scroll">
             <h2 class="section-title text-3xl">Pratos Principais</h2>
             <div class="divider"></div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div class="item-card">
                     <img src="/assets/imagens/2.webp" alt="Foto do prato Camarão Coco Bambu" class="shadow-md">
-                    <h3>Camarão Coco Bambu <br> (276g/409g/758g)</h3>
-                    <p class="item-description">Camarões recheados com catupiry e empanados. Servidos sobre cremoso arroz com camarões, ervilhas e presunto, envolvido com molho branco. Gratinado com queijos muçarela e parmesão. Acompanha batata palha.</p>
+                    <h3>Camarão Coco Bambu</h3>
+                    <p class="item-description">Camarões recheados com catupiry e empanados. Servidos sobre cremoso arroz com camarões, ervilhas e presunto, envolvido com molho branco. Gratinado com queijos muçarela e parmesão. Acompanha batata palha.br <br>Cód: 3107</p>
                 </div>
                 <div class="item-card">
                     <img src="/assets/imagens/3.webp" alt="Foto do prato Carne de Sol do Sertão" class="shadow-md">
-                    <h3>Carne de Sol do Sertão <br> (200g/400g)</h3>
-                    <p class="item-description">Arroz de leite com queijo coalho, coberto com carne de sol desfiada e refogada na manteiga da terra com cebola roxa, nata e coentro. Gratinada com queijo coalho. Acompanha macaxeira frita.</p>
+                    <h3>Carne de Sol do Sertão</h3>
+                    <p class="item-description">Arroz de leite com queijo coalho, coberto com carne de sol desfiada e refogada na manteiga da terra com cebola roxa, nata e coentro. Gratinada com queijo coalho. Acompanha macaxeira frita.<br>Cód: 6037</p>
                 </div>
             </div>
         </section>
         
-        <!-- Seção de Sobremesa -->
         <section id="sobremesa" class="mb-16 animate-on-scroll">
             <h2 class="section-title text-3xl">Sobremesa</h2>
             <div class="divider"></div>
              <div class="flex justify-center">
                 <div class="item-card w-full md:w-2/3">
-                    <img src="/assets/imagens/10.jpg" alt="Foto de um bolo de aniversário" class="shadow-md">
+                    <img src="/assets/imagens/10.png" alt="Foto de um bolo de aniversário" class="shadow-md">
                     <h3>Bolo de Aniversário</h3>
-                    <p class="item-description">Bolo temático "De Repente 30" para celebrar a data especial.</p>
+                    <p class="item-description">Sabor Chocolate, recheio de beijinho e brigadeiro.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Seção de Bebidas -->
         <section id="bebidas" class="mb-12 animate-on-scroll">
             <h2 class="section-title text-3xl">Bebidas</h2>
             <div class="divider"></div>
@@ -145,35 +253,48 @@
                 <div class="item-card">
                     <img src="/assets/imagens/4.webp" alt="Suco de Laranja" class="shadow-md">
                     <h3>Suco de Laranja</h3>
-                    <p class="item-description">Copo 250ml ou Jarra 750ml.</p>
+                    <p class="item-description">Copo 250ml ou Jarra 750ml.<br>Cód: 41037 - 41038</p>
                 </div>
                  <div class="item-card">
                     <img src="/assets/imagens/5.webp" alt="Suco de Abacaxi com Hortelã" class="shadow-md">
                     <h3>Abacaxi c/ Hortelã</h3>
-                     <p class="item-description">Copo 250ml ou Jarra 750ml.</p>
+                     <p class="item-description">Copo 250ml ou Jarra 750ml.<br>Cód: 41001 - 41002</p>
                 </div>
                  <div class="item-card">
                     <img src="/assets/imagens/6.webp" alt="Suco de Morango" class="shadow-md">
                     <h3>Suco de Morango</h3>
-                     <p class="item-description">Copo 250ml ou Jarra 750ml.</p>
+                     <p class="item-description">Copo 250ml ou Jarra 750ml.<br>Cód: 41057 - 41058</p>
                 </div>
                  <div class="item-card">
                     <img src="/assets/imagens/7.webp" alt="Coca-Cola" class="shadow-md">
                     <h3>Coca-Cola</h3>
-                     <p class="item-description">Garrafa 290ml Normal ou Zero.</p>
+                     <p class="item-description">Garrafa 290ml Normal ou Zero.<br>Cód: 42020 - 420011</p>
                 </div>
                  <div class="item-card">
                     <img src="/assets/imagens/8.webp" alt="Guaraná Antarctica" class="shadow-md">
                     <h3>Guaraná Antarctica</h3>
-                     <p class="item-description">Lata 350ml Normal ou Zero.</p>
+                     <p class="item-description">Lata 350ml Normal ou Zero.<br>Cód: 42041 - 42047</p>
                 </div>
                  <div class="item-card">
                     <img src="/assets/imagens/9.webp" alt="Água Mineral" class="shadow-md">
                     <h3>Água Mineral</h3>
-                     <p class="item-description">Garrafa 330ml Com ou Sem Gás.</p>
+                     <p class="item-description">Garrafa 330ml Com ou Sem Gás.<br>Cód: 40012 - 40017</p>
                 </div>
             </div>
         </section>
+        
+        <div id="myFloatButton" class="float-button">
+            <i class="material-icons">qr_code</i>
+        </div>
+        
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h3>Compartilhe essa Página</h3>
+                <div id="qrcode-container"></div>
+                <p>Aponte a câmera do seu celular para escanear.</p>
+            </div>
+        </div>
 
     </div>
 
@@ -192,6 +313,52 @@
         const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
         elementsToAnimate.forEach(el => observer.observe(el));
     </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        // Seleciona os elementos
+        const floatButton = document.getElementById('myFloatButton');
+        const modal = document.getElementById('myModal');
+        const closeButton = document.querySelector('.close-button');
 
+        // URL para o WhatsApp com uma mensagem pré-definida
+        const urlToEncode = 'https://aniversariomyrya.vercel.app/';
+
+        // Função para abrir o modal
+        function openModal() {
+            modal.classList.add('show');
+        }
+
+        // Função para fechar o modal
+        function closeModal() {
+            modal.classList.remove('show');
+        }
+
+        // Evento de clique para abrir o modal
+        floatButton.onclick = openModal;
+
+        // Evento de clique para fechar o modal
+        closeButton.onclick = closeModal;
+
+        // Fecha o modal se o usuário clicar fora dele
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // Gera o QR Code uma vez quando a página carrega
+        const qrcodeContainer = document.getElementById('qrcode-container');
+        if (qrcodeContainer) {
+            new QRCode(qrcodeContainer, {
+                text: urlToEncode,
+                width: 200,
+                height: 200,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        }
+    </script>
 </body>
 </html>
